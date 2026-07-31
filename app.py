@@ -1,0 +1,1 @@
+print("Welcome to Smart File Organizer Version : 1.0")

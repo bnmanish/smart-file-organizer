@@ -22,4 +22,8 @@ source_folder = Path("/home/bnmanish/Downloads")
 for file in source_folder.iterdir():
 	if file.is_file():
 		category = get_category(file.suffix)
-		print(f'{file.name} ====> {category}')
+		# print(f'{file.name} ====> {category}')
+		# print(category)
+		fillFolderPath = f"/home/bnmanish/Downloads/{category}"
+		print(fillFolderPath)
+		# fillFolderPath.mkdir(exist_ok=True)

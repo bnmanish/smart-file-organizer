@@ -16,14 +16,14 @@ def get_category(extension):
 	else:
 		return('Other')
 
-
-source_folder = Path("/home/bnmanish/Downloads")
+#source path whitch file to organize
+source_folder = Path("/home/bnmanish/Downloads/python")
 
 for file in source_folder.iterdir():
 	if file.is_file():
+		print(file)
 		category = get_category(file.suffix)
-		# print(f'{file.name} ====> {category}')
-		# print(category)
-		fillFolderPath = f"/home/bnmanish/Downloads/{category}"
-		print(fillFolderPath)
-		# fillFolderPath.mkdir(exist_ok=True)
+		fillFolderPath = source_folder / category #dir created to move the files
+		fillFolderPath.mkdir(exist_ok=True)
+		destination = fillFolderPath/file.name
+		file.rename(destination)

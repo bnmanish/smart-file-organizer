@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# ----------------function to get category starts--------------
 def get_category(extension):
 	pdf_extensions = [".pdf"]
 	image_extensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"]
@@ -15,6 +16,8 @@ def get_category(extension):
 		return('Document')
 	else:
 		return('Other')
+# ----------------function to get category starts--------------
+
 
 #source path whitch file to organize
 source_folder = Path("/home/bnmanish/Downloads/python")

@@ -1,4 +1,5 @@
 from pathlib import Path
+import sys
 
 # ----------------function to get category starts--------------
 def get_category(extension):
@@ -33,25 +34,22 @@ def check_unique_destination(destination):
 
 
 #source path whitch file to organize
-source_folder = Path("/home/bnmanish/Downloads/python")
-
+dir = input('Enter folder path : ')
+source_folder = Path(dir)
+if not source_folder.is_dir():
+	print('This path does not exist')
+	sys.exit()
 for file in source_folder.iterdir():
 	if file.is_file():
-		# print(file)
 		category = get_category(file.suffix)
 		fillFolderPath = source_folder / category #dir created to move the files
 		fillFolderPath.mkdir(exist_ok=True)
 		destination = fillFolderPath/file.name
-		if not destination.exists():
-			try:
-				file.rename(destination)
-				print(f'{file.name} moved in {category}')
-			except OSError as error:
-				print(f'Failed to move {file.name} in {category} : {error}')
-		else:
-			try:
-				newdest = check_unique_destination(destination)
-				file.rename(newdest)
-				print(f'{file.name} moved in {category}')
-			except OSError as error:
-				 print(f'Failed to move {file.name} in {category} : {error}')
+		if destination.exists():
+			destination = check_unique_destination(destination)
+
+		try:
+			file.rename(destination)
+			print(f'{file.name} ====> moved in ====> {category}')
+		except OSError as error:
+			print(f'Failed to move {file.name} in {category} : {error}')

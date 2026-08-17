@@ -33,6 +33,18 @@ def check_unique_destination(destination):
 #------ 1. Duplicate Filename Problem solution ends----------
 
 
+counts = {
+    "PDF": 0,
+    "Image": 0,
+    "Video": 0,
+    "Document": 0,
+    "Other": 0
+}
+
+total_files = 0
+successful_files = 0
+failed_files = 0
+
 #source path whitch file to organize
 dir = input('Enter folder path : ')
 source_folder = Path(dir)
@@ -51,5 +63,30 @@ for file in source_folder.iterdir():
 		try:
 			file.rename(destination)
 			print(f'{file.name} ====> moved in ====> {category}')
+			counts[category] += 1
+			successful_files += 1
+			total_files += 1
 		except OSError as error:
 			print(f'Failed to move {file.name} in {category} : {error}')
+			failed_files += 1
+			total_files += 1
+
+# moved = total - failed_files
+
+print('=======================================')
+print('      😀ORGANIZATION COMPLETE😎')
+print('=======================================')
+
+print(f'Total Files : {total_files}')
+print(f'PDF         : {counts['PDF']}')
+print(f'Image       : {counts['Image']}')
+print(f'Video       : {counts['Video']}')
+print(f'Document    : {counts['Document']}')
+print(f'Other       : {counts['Other']}')
+print('                                        ')
+print(f'Successfully moved : {successful_files}')
+print(f'Failed : {failed_files}')
+
+print('=======================================')
+
+

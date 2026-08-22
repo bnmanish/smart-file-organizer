@@ -32,7 +32,7 @@ for file in source_folder.iterdir():
 			if destination.exists():
 				destination = check_unique_destination(destination)
 			
-			file.rename(destination)
+			# file.rename(destination)
 			print(f'{file.name} ====> moved in ====> {category}')
 			counts[category] += 1
 			successful_files += 1
@@ -42,7 +42,9 @@ for file in source_folder.iterdir():
 			failed_files += 1
 			total_files += 1
 
-# moved = total - failed_files
+
+print(counts)
+sys.exit()
 
 print('=======================================')
 print('      😀ORGANIZATION COMPLETE😎')

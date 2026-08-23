@@ -14,6 +14,7 @@ counts = {
 total_files = 0
 successful_files = 0
 failed_files = 0
+finalData = {}
 
 #source path whitch file to organize
 folder_path = input('Enter folder path : ')
@@ -21,6 +22,7 @@ source_folder = Path(folder_path)
 if not source_folder.is_dir():
 	print('This path does not exist')
 	sys.exit()
+i = 0
 for file in source_folder.iterdir():
 	if file.is_file():
 		category = get_category(file.suffix)
@@ -33,18 +35,16 @@ for file in source_folder.iterdir():
 				destination = check_unique_destination(destination)
 			
 			# file.rename(destination)
+			finalData[i] = destination
 			print(f'{file.name} ====> moved in ====> {category}')
 			counts[category] += 1
 			successful_files += 1
 			total_files += 1
+			i += 1
 		except OSError as error:
 			print(f'Failed to move {file.name} in {category} : {error}')
 			failed_files += 1
 			total_files += 1
-
-
-print(counts)
-sys.exit()
 
 print('=======================================')
 print('      😀ORGANIZATION COMPLETE😎')
@@ -59,3 +59,4 @@ print(f'Failed : {failed_files}')
 print('=======================================')
 
 
+print(finalData)

@@ -59,4 +59,5 @@ print(f'Failed : {failed_files}')
 print('=======================================')
 
 
-print(finalData)
+for value in finalData.values:
+	file.rename(destination)

@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+from pprint import pprint
 
 from function import get_category, check_unique_destination
 
@@ -47,6 +48,25 @@ for file in source_folder.iterdir():
 			total_files += 1
 
 print('=======================================')
+print('      FILE TO BE ORGANIZE')
+print('=======================================')
+print(f'Total Files : {total_files}')
+print()
+for category, count in counts.items():
+	print(f"{category:<10}: {count}")
+print('=======================================')
+
+# pprint(finalData)
+
+confirmation = input("Do you want to organize these files? (y/n): ")
+if confirmation != 'y':
+	print('Thanks for using file organizer')
+	sys.exit()
+
+for value in finalData.values:
+	file.rename(value)
+
+print('=======================================')
 print('      😀ORGANIZATION COMPLETE😎')
 print('=======================================')
 print(f'Total Files : {total_files}')
@@ -57,7 +77,3 @@ print()
 print(f'Successfully moved : {successful_files}')
 print(f'Failed : {failed_files}')
 print('=======================================')
-
-
-for value in finalData.values:
-	file.rename(destination)

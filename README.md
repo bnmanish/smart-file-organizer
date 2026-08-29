@@ -1,6 +1,6 @@
 # Smart File Organizer
 
-A Python script that automatically organizes files in a specified directory by categorizing them into folders based on their file extensions.
+A Python script(CLI based) that automatically organizes files in a specified directory by categorizing them into folders based on their file extensions.
 
 ## Features
 
@@ -68,7 +68,18 @@ smart-file-organizer/
 
 ## Author
 
-**B N Manish**  
+**B N Manish**
+
+Software Developer with 7+ years of experience building SaaS, e-commerce, CRM, inventory management, and CMS platforms. Specializes in designing and developing complete solutions from scratch — admin panels, user-facing platforms, and backend architectures.
+
+**Highlights:**
+- Extensive experience with payment gateway integrations (Razorpay, Stripe, Cashfree, PayU, PayPal, Mollie) — including one-time, recurring, and charge-at-will flows
+- Skilled in secure authentication, RBAC (Role-Based Access Control), Google reCAPTCHA, and WCAG accessibility implementation
+- Hands-on experience with AI integrations, including ChatGPT APIs (Assistants, Threads, Runs, Messages, Chat Completion)
+- Comfortable across Linux (Ubuntu) and Windows environments; strong with Git, GitHub, and GitLab
+
+**Tech Stack:** PHP, Laravel, Yii2, CodeIgniter, JavaScript, ReactJs, TypeScript, Livewire, MySQL
+
 [LinkedIn Profile](https://www.linkedin.com/in/bnmanish/)
 
 ## License

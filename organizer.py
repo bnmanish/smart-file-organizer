@@ -4,6 +4,7 @@ from pprint import pprint
 
 from function import get_category, check_unique_destination
 
+# ---------------- Category counts ----------------
 counts = {
     "PDF": 0,
     "Image": 0,
@@ -12,17 +13,29 @@ counts = {
     "Other": 0
 }
 
+# ---------------- Application counters ----------------
+
 total_files = 0
 successful_files = 0
 failed_files = 0
+
+# Dictionary to store:
+# Source file -> Destination file
 finalData = {}
 
-#source path whitch file to organize
+# ---------------- Get folder path ----------------
+
 folder_path = input('Enter folder path : ')
 source_folder = Path(folder_path)
+
+# ---------------- Validate folder ----------------
 if not source_folder.is_dir():
 	print('This path does not exist')
 	sys.exit()
+
+# ==================================================
+# PHASE 1: SCAN FILES
+# ==================================================
 i = 0
 for file in source_folder.iterdir():
 	if file.is_file():
@@ -31,7 +44,7 @@ for file in source_folder.iterdir():
 		try:
 			destination = folder_path/file.name
 			if destination.exists():
-				destination = check_unique_destination(destination)
+				destination = check_unique_destination(destination)  #rename file of already exist
 			
 			finalData[file] = destination
 			print(f'{file.name} ====> to move in ====> {category}')
@@ -42,6 +55,11 @@ for file in source_folder.iterdir():
 			print(f'will fail to move {file.name} in {category} : {error}')
 			total_files += 1
 
+
+# ==================================================
+# PHASE 2: SHOW PREVIEW
+# ==================================================
+
 print('=======================================')
 print('      FILE TO BE ORGANIZE')
 print('=======================================')
@@ -51,13 +69,18 @@ for category, count in counts.items():
 	print(f"{category:<10}: {count}")
 print('=======================================')
 
-# pprint(finalData)
+# ==================================================
+# PHASE 3: USER CONFIRMATION
+# ==================================================
 
 confirmation = input("Do you want to organize these files? (y/n): ").lower()
 if confirmation != "y":
     print("Thanks for using Smart File Organizer")
     sys.exit()
 
+# ==================================================
+# PHASE 4: CREATE FOLDERS AND MOVE FILES
+# ==================================================
 for file, destination in finalData.items():
     try:
         destination.parent.mkdir(exist_ok=True)
@@ -67,6 +90,10 @@ for file, destination in finalData.items():
     except OSError as error:
         print(f"Failed to move {file.name}: {error}")
         failed_files += 1
+
+# ==================================================
+# PHASE 5: FINAL REPORT
+# ==================================================
 
 print('=======================================')
 print('      😀ORGANIZATION COMPLETE😎')
@@ -79,3 +106,7 @@ print()
 print(f'Successfully moved : {successful_files}')
 print(f'Failed : {failed_files}')
 print('=======================================')
+
+# ==================================================
+# END OF SMART FILE ORGANIZER
+# ==================================================
